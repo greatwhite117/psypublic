@@ -1,0 +1,11 @@
+{% extends 'game/base.html' %}
+
+{% block content %}
+<div>
+<h1>{% autoescape off %}{{ contents }}{% endautoescape %}</h1>
+</div>
+    <div>
+<a class="btn btn-lg btn-danger" href="{% url no_next_page next_index %}">{% autoescape off %}{{ NO }}{% endautoescape %}</a>
+<a class="btn btn-lg btn-primary" href="{% url yes_next_page next_index %}">{% autoescape off %}{{ YES }}{% endautoescape %}</a>
+</div>
+{% endblock content %}
