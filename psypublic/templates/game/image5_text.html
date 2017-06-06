@@ -1,0 +1,18 @@
+{% extends 'game/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+    <table border="0">
+
+    <tr>
+        <td><img src="{% static "game/5.jpg" %}" height="200"/></td>
+        <td><h1 >{% autoescape off %}{{ contents }}{% endautoescape %}</h1></td>
+    </tr>
+
+</table>
+        <div>
+<a class="btn btn-lg btn-primary" href="{% url next_page next_index %}">Next</a>
+</div>
+
+{% endblock content %}
