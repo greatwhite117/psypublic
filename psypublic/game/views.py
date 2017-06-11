@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from django.shortcuts import render, redirect
 from .models import Player, Game
 from django.http import HttpResponse
@@ -224,7 +223,7 @@ def intro(request,num="0"):
                 token_string = '점수'
 
         context['contents'] = '따라서 %d번의 게임이 끝난 후 당신의 총 수익은 다음과 같습니다. <br><br>' \
-                              '총 수익 <br>= (<b>개인 펀드</b>의 총 %s x %s 원) + (<b>공공 펀드</b>의 총 %s x %s 원)' % \
+                              '총 수익 <br>= (<b>개인 펀드</b>의 총 %s x %s배) + (<b>공공 펀드</b>의 총 %s x %s배)' % \
                               (currentPlayer.gamePlay.main_iteration,token_string, splitthousands(str(token_multiply_private)), token_string, splitthousands(str(token_multiply_public)))
 
         context['next_page'] = 'intro'
@@ -234,7 +233,10 @@ def intro(request,num="0"):
             context['next_index'] = int(num) + 2
 
 
-    elif num == "6": # 보상 페이지
+    elif num == "6": # 보상 페이
+
+
+        template = 'game/only_text.html'
         if currentPlayer.gamePlay.token_type == 't':
             token_string = '토큰을'
         else:
@@ -243,7 +245,8 @@ def intro(request,num="0"):
             else:
                 token_string = '점수를'
 
-        context['contents'] = '당신이 얼마의 %s 공공 펀드에 투자했는지는 다른 사람에게 알려지지 않으며, 게임이 끝난 후 총 수익에 따라 참가비를 지급받게 됩니다.' % (token_string)
+
+        context['contents'] = '여러분이 얼마의 %s 공공 펀드에 투자했는지는<br> 다른 사람에게 알려지지 않으며,<br><br> 모든 게임이 끝난 후 여러분은 총 수익에 따라 다른 결과를 제공받게 됩니다.' % (token_string)
         context['next_page'] = 'intro'
         context['next_index'] = int(num) + 1
     elif num == "7":
